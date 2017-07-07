@@ -1,4 +1,6 @@
-﻿namespace NetFrameworkLibrary
+﻿using System;
+
+namespace NetFrameworkLibrary
 {
     public static class StringProvider
     {

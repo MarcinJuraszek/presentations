@@ -10,7 +10,10 @@ namespace HelloWorld.ConsoleApp
             string name = Console.ReadLine();
 
             Console.WriteLine();
-            Console.WriteLine(name);
+
+            string hello = name;
+            Console.WriteLine(hello);
+
             Console.WriteLine();
         }
     }
