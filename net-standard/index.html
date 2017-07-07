@@ -1,0 +1,855 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>.NET Standard explained - Marcin Juraszek</title>
+
+    <meta name="description" content=".NET Standard explained presentation by Marcin Juraszek">
+    <meta name="author" content="Marcin Juraszek">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="../reveal-js/css/reveal.css">
+    <link rel="stylesheet" href="../reveal-js/css/theme/black.css" id="theme">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../reveal-js/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? '../reveal-js/css/print/pdf.css' : '../reveal-js/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+</head>
+
+<body>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <!-- Title -->
+            <section>
+                <h1>.NET Standard explained</h1>
+                <p>
+                    <small>by <a href="http://marcinjuraszek.com">Marcin Juraszek</a></small>
+                </p>
+            </section>
+
+            <!-- About me -->
+            <section style="text-align: left">
+                <img src="../shared-content/twitter-picture.jpg" style="float: right; width: 200px; height: 200px; border-radius: 50%;" />
+                <h2>Marcin Juraszek</h2>
+                <p>Senior Software Engineer @ Microsoft</p>
+                <ul>
+                    <li><a href="http://marcinjuraszek.com">http://marcinjuraszek.com</a></li>
+                    <li><a href="https://twitter.com/mmjuraszek">@mmjuraszek</a> on Twitter</li>
+                    <li><a href="https://github.com/MarcinJuraszek">MarcinJuraszek</a> on GitHub</li>
+                </ul>
+            </section>
+
+            <!-- .NET Standard -->
+            <section>
+                <h2>.NET Standard</h2>
+                <hr />
+                <p class="fragment" data-fragment-index="0">A <strong style="text-decoration: underline">specification</strong>, not a
+                    <strike>platform</strike>.</p>
+                <p class="fragment" data-fragment-index="1">You can <strong style="text-decoration: underline">write against it</strong>, never
+                    <strike>run on it</strike>.</p>
+            </section>
+
+            <!-- .NET Ecosystem - images -->
+            <section>
+                <section>
+                    <h3>.NET ecosystem</h3>
+                    <img src="content/dotnet-today.png" />
+                </section>
+                <section>
+                    <h3>.NET ecosystem with .NET Standard</h3>
+                    <img src="content/dotnet-tomorrow.png" />
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h2>Analogy</h2>
+                </section>
+                <section>
+                    <pre><code class="cs">interface INetStandard14 : INetStandard13
+{
+    void IsolatedStorage();
+}
+
+interface INetStandard15 : INetStandard14
+{
+    void AssemblyLoadContext();
+}</code></pre>
+                </section>
+                <section>
+                    <pre><code class="cs">interface IXamarinIOS : INetStandard15
+{
+    void AppleAPIs();
+}
+
+interface INetFramework462 : INetFramework461, INetStandard15
+{
+    // (...)
+}
+
+interface INetCoreApp10 : INetStandard15
+{
+}</code></pre>
+                </section>
+            </section>
+
+            <!-- Versioning -->
+            <section>
+                <section>
+                    <h2>Versioning</h2>
+                </section>
+                <style>
+                    div.versions {
+                        height: 500px;
+                    }
+
+                    div.versions p {
+                        display: block;
+                        line-height: 60px;
+                        border-radius: 50%;
+                        position: absolute;
+                        bottom: 0px;
+                        font-weight: bold;
+                        font-size: 0.8em;
+                    }
+
+                    div.versions p.one {
+                        width: 60px;
+                        height: 60px;
+                        line-height: 60px;
+                        left: calc(50% - 30px);
+                        background-color: #b95835;
+                    }
+
+                    div.versions p.oneone {
+                        width: 120px;
+                        height: 120px;
+                        left: calc(50% - 60px);
+                        background-color: #f1a94e;
+                    }
+
+                    div.versions p.onetwo {
+                        width: 160px;
+                        height: 160px;
+                        line-height: 40px;
+                        left: calc(50% - 80px);
+                        font-size: 0.6em;
+                        background-color: #e45641;
+                    }
+
+                    div.versions p.onethree {
+                        width: 220px;
+                        height: 220px;
+                        left: calc(50% - 110px);
+                        background-color: #5d4c46;
+                    }
+
+                    div.versions p.onefour {
+                        width: 240px;
+                        height: 240px;
+                        left: calc(50% - 120px);
+                        background-color: #7b8d8e;
+                    }
+
+                    div.versions p.onefive {
+                        width: 260px;
+                        height: 260px;
+                        left: calc(50% - 130px);
+                        background-color: #f2edd8;
+                    }
+
+                    div.versions p.onesix {
+                        width: 280px;
+                        height: 280px;
+                        left: calc(50% - 140px);
+                        background-color: #e18942;
+                    }
+
+                    div.versions p.two {
+                        width: 540px;
+                        height: 540px;
+                        line-height: calc(540px - 280px);
+                        left: calc(50% - 270px);
+                        font-size: 1.4em;
+                        background-color: #44b3c2;
+                    }
+                </style>
+                <section>
+                    <div class="versions">
+                        <p class="two fragment" data-fragment-index="6">2.0</p>
+                        <p class="onesix fragment" data-fragment-index="5"></p>
+                        <p class="onefive fragment" data-fragment-index="4"></p>
+                        <p class="onefour fragment" data-fragment-index="3"></p>
+                        <p class="onethree fragment" data-fragment-index="2">1.3</p>
+                        <p class="onetwo fragment" data-fragment-index="1">1.2</p>
+                        <p class="oneone fragment" data-fragment-index="0">1.1</p>
+                        <p class="one">1.0</p>
+                    </div>
+                </section>
+                <section>
+                    <style>
+                        table.versions {
+                            font-size: 0.8em;
+                        }
+
+                        table.versions td+td {
+                            text-align: center;
+                        }
+
+                        table.versions td+td+td {
+                            text-align: right;
+                        }
+                    </style>
+                    <table class="versions">
+                        <thead>
+                            <tr>
+                                <th>Version</th>
+                                <th>#APIs</th>
+                                <th>Growth %</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1.0</td>
+                                <td>7,949</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>1.1</td>
+                                <td>10,239</td>
+                                <td>+29%</td>
+                            </tr>
+                            <tr>
+                                <td>1.2</td>
+                                <td>10,285</td>
+                                <td>+0%</td>
+                            </tr>
+                            <tr>
+                                <td>1.3</td>
+                                <td>13,122</td>
+                                <td>+28%</td>
+                            </tr>
+                            <tr>
+                                <td>1.4</td>
+                                <td>13,140</td>
+                                <td>+0%</td>
+                            </tr>
+                            <tr>
+                                <td>1.5</td>
+                                <td>13,355</td>
+                                <td>+2%</td>
+                            </tr>
+                            <tr>
+                                <td>1.6</td>
+                                <td>13,501</td>
+                                <td>+1%</td>
+                            </tr>
+                            <tr>
+                                <td>2.0</td>
+                                <td>32,638</td>
+                                <td>+142%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </section>
+
+            <!-- Which version to target? -->
+            <section>
+                <section>
+                    <h2>Which version to target?</h2>
+                    <p class="fragment" data-fragment-index="0">The higher the version,<br>the more APIs are available to you.</p>
+                    <hr class="fragment" data-fragment-index="1" />
+                    <p class="fragment" data-fragment-index="1">The lower the version,<br />the more platforms you can run on.</p>
+                </section>
+                <style>
+                    table.platforms {
+                        font-size: 0.5em;
+                    }
+
+                    table.platforms tr th {
+                        border-color: #e18942;
+                    }
+
+                    table.platforms tr th a {
+                        color: white;
+                    }
+
+                    table.platforms td+td,
+                    table.platforms th+th {
+                        text-align: center;
+                    }
+
+                    table.platforms.byPlatform tr:nth-of-type(5) td,
+                    table.platforms.byPlatform tr:nth-of-type(6) td,
+                    table.platforms.byPlatform tr:nth-of-type(9) td {
+                        background-color: #44b3c2;
+                    }
+
+                    table.platforms.byPlatform tr td:nth-of-type(4),
+                    table.platforms.byPlatform tr th:nth-of-type(4) {
+                        background-color: mediumseagreen;
+                    }
+
+                    table.platforms.byStandard tr td:nth-of-type(5),
+                    table.platforms.byStandard tr th:nth-of-type(5) {
+                        background-color: mediumseagreen;
+                    }
+                </style>
+                <section>
+                    <table class="platforms">
+                        <thead>
+                            <tr>
+                                <th>.NET Standard</th>
+                                <th><a href="https://github.com/dotnet/standard/blob/master/docs/versions/netstandard1.0.md"
+                                        data-linktype="external">1.0</a></th>
+                                <th><a href="https://github.com/dotnet/standard/blob/master/docs/versions/netstandard1.1.md"
+                                        data-linktype="external">1.1</a></th>
+                                <th><a href="https://github.com/dotnet/standard/blob/master/docs/versions/netstandard1.2.md"
+                                        data-linktype="external">1.2</a></th>
+                                <th><a href="https://github.com/dotnet/standard/blob/master/docs/versions/netstandard1.3.md"
+                                        data-linktype="external">1.3</a></th>
+                                <th><a href="https://github.com/dotnet/standard/blob/master/docs/versions/netstandard1.4.md"
+                                        data-linktype="external">1.4</a></th>
+                                <th><a href="https://github.com/dotnet/standard/blob/master/docs/versions/netstandard1.5.md"
+                                        data-linktype="external">1.5</a></th>
+                                <th><a href="https://github.com/dotnet/standard/blob/master/docs/versions/netstandard1.6.md"
+                                        data-linktype="external">1.6</a></th>
+                                <th><a href="https://github.com/dotnet/standard/blob/master/docs/versions/netstandard2.0.md"
+                                        data-linktype="external">2.0</a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>.NET Core</td>
+                                <td>1.0</td>
+                                <td>1.0</td>
+                                <td>1.0</td>
+                                <td>1.0</td>
+                                <td>1.0</td>
+                                <td>1.0</td>
+                                <td>1.0</td>
+                                <td>2.0</td>
+                            </tr>
+                            <tr>
+                                <td>.NET Framework (with tooling 1.0)</td>
+                                <td>4.5</td>
+                                <td>4.5</td>
+                                <td>4.5.1</td>
+                                <td>4.6</td>
+                                <td>4.6.1</td>
+                                <td>4.6.2</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>.NET Framework (with tooling 2.0 preview)</td>
+                                <td>4.5</td>
+                                <td>4.5</td>
+                                <td>4.5.1</td>
+                                <td>4.6</td>
+                                <td>4.6.1</td>
+                                <td>4.6.1</td>
+                                <td>4.6.1</td>
+                                <td>4.6.1</td>
+                            </tr>
+                            <tr>
+                                <td>Mono</td>
+                                <td>4.6</td>
+                                <td>4.6</td>
+                                <td>4.6</td>
+                                <td>4.6</td>
+                                <td>4.6</td>
+                                <td>4.6</td>
+                                <td>4.6</td>
+                                <td>vNext</td>
+                            </tr>
+                            <tr>
+                                <td>Xamarin.iOS</td>
+                                <td>10.0</td>
+                                <td>10.0</td>
+                                <td>10.0</td>
+                                <td>10.0</td>
+                                <td>10.0</td>
+                                <td>10.0</td>
+                                <td>10.0</td>
+                                <td>vNext</td>
+                            </tr>
+                            <tr>
+                                <td>Xamarin.Android</td>
+                                <td>7.0</td>
+                                <td>7.0</td>
+                                <td>7.0</td>
+                                <td>7.0</td>
+                                <td>7.0</td>
+                                <td>7.0</td>
+                                <td>7.0</td>
+                                <td>vNext</td>
+                            </tr>
+                            <tr>
+                                <td>Universal Windows Platform</td>
+                                <td>10.0</td>
+                                <td>10.0</td>
+                                <td>10.0</td>
+                                <td>10.0</td>
+                                <td>10.0</td>
+                                <td>vNext</td>
+                                <td>vNext</td>
+                                <td>vNext</td>
+                            </tr>
+                            <tr>
+                                <td>Windows</td>
+                                <td>8.0</td>
+                                <td>8.0</td>
+                                <td>8.1</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Windows Phone</td>
+                                <td>8.1</td>
+                                <td>8.1</td>
+                                <td>8.1</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Windows Phone Silverlight</td>
+                                <td>8.0</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <table class="platforms byStandard">
+                        <thead>
+                            <tr>
+                                <th>.NET Standard</th>
+                                <th><a href="https://github.com/dotnet/standard/blob/master/docs/versions/netstandard1.0.md"
+                                        data-linktype="external">1.0</a></th>
+                                <th><a href="https://github.com/dotnet/standard/blob/master/docs/versions/netstandard1.1.md"
+                                        data-linktype="external">1.1</a></th>
+                                <th><a href="https://github.com/dotnet/standard/blob/master/docs/versions/netstandard1.2.md"
+                                        data-linktype="external">1.2</a></th>
+                                <th><a href="https://github.com/dotnet/standard/blob/master/docs/versions/netstandard1.3.md"
+                                        data-linktype="external">1.3</a></th>
+                                <th><a href="https://github.com/dotnet/standard/blob/master/docs/versions/netstandard1.4.md"
+                                        data-linktype="external">1.4</a></th>
+                                <th><a href="https://github.com/dotnet/standard/blob/master/docs/versions/netstandard1.5.md"
+                                        data-linktype="external">1.5</a></th>
+                                <th><a href="https://github.com/dotnet/standard/blob/master/docs/versions/netstandard1.6.md"
+                                        data-linktype="external">1.6</a></th>
+                                <th><a href="https://github.com/dotnet/standard/blob/master/docs/versions/netstandard2.0.md"
+                                        data-linktype="external">2.0</a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>.NET Core</td>
+                                <td>1.0</td>
+                                <td>1.0</td>
+                                <td>1.0</td>
+                                <td>1.0</td>
+                                <td>1.0</td>
+                                <td>1.0</td>
+                                <td>1.0</td>
+                                <td>2.0</td>
+                            </tr>
+                            <tr>
+                                <td>.NET Framework (with tooling 1.0)</td>
+                                <td>4.5</td>
+                                <td>4.5</td>
+                                <td>4.5.1</td>
+                                <td>4.6</td>
+                                <td>4.6.1</td>
+                                <td>4.6.2</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>.NET Framework (with tooling 2.0 preview)</td>
+                                <td>4.5</td>
+                                <td>4.5</td>
+                                <td>4.5.1</td>
+                                <td>4.6</td>
+                                <td>4.6.1</td>
+                                <td>4.6.1</td>
+                                <td>4.6.1</td>
+                                <td>4.6.1</td>
+                            </tr>
+                            <tr>
+                                <td>Mono</td>
+                                <td>4.6</td>
+                                <td>4.6</td>
+                                <td>4.6</td>
+                                <td>4.6</td>
+                                <td>4.6</td>
+                                <td>4.6</td>
+                                <td>4.6</td>
+                                <td>vNext</td>
+                            </tr>
+                            <tr>
+                                <td>Xamarin.iOS</td>
+                                <td>10.0</td>
+                                <td>10.0</td>
+                                <td>10.0</td>
+                                <td>10.0</td>
+                                <td>10.0</td>
+                                <td>10.0</td>
+                                <td>10.0</td>
+                                <td>vNext</td>
+                            </tr>
+                            <tr>
+                                <td>Xamarin.Android</td>
+                                <td>7.0</td>
+                                <td>7.0</td>
+                                <td>7.0</td>
+                                <td>7.0</td>
+                                <td>7.0</td>
+                                <td>7.0</td>
+                                <td>7.0</td>
+                                <td>vNext</td>
+                            </tr>
+                            <tr>
+                                <td>Universal Windows Platform</td>
+                                <td>10.0</td>
+                                <td>10.0</td>
+                                <td>10.0</td>
+                                <td>10.0</td>
+                                <td>10.0</td>
+                                <td>vNext</td>
+                                <td>vNext</td>
+                                <td>vNext</td>
+                            </tr>
+                            <tr>
+                                <td>Windows</td>
+                                <td>8.0</td>
+                                <td>8.0</td>
+                                <td>8.1</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Windows Phone</td>
+                                <td>8.1</td>
+                                <td>8.1</td>
+                                <td>8.1</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Windows Phone Silverlight</td>
+                                <td>8.0</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <table class="platforms byPlatform">
+                        <thead>
+                            <tr>
+                                <th>.NET Standard</th>
+                                <th><a href="https://github.com/dotnet/standard/blob/master/docs/versions/netstandard1.0.md"
+                                        data-linktype="external">1.0</a></th>
+                                <th><a href="https://github.com/dotnet/standard/blob/master/docs/versions/netstandard1.1.md"
+                                        data-linktype="external">1.1</a></th>
+                                <th><a href="https://github.com/dotnet/standard/blob/master/docs/versions/netstandard1.2.md"
+                                        data-linktype="external">1.2</a></th>
+                                <th><a href="https://github.com/dotnet/standard/blob/master/docs/versions/netstandard1.3.md"
+                                        data-linktype="external">1.3</a></th>
+                                <th><a href="https://github.com/dotnet/standard/blob/master/docs/versions/netstandard1.4.md"
+                                        data-linktype="external">1.4</a></th>
+                                <th><a href="https://github.com/dotnet/standard/blob/master/docs/versions/netstandard1.5.md"
+                                        data-linktype="external">1.5</a></th>
+                                <th><a href="https://github.com/dotnet/standard/blob/master/docs/versions/netstandard1.6.md"
+                                        data-linktype="external">1.6</a></th>
+                                <th><a href="https://github.com/dotnet/standard/blob/master/docs/versions/netstandard2.0.md"
+                                        data-linktype="external">2.0</a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>.NET Core</td>
+                                <td>1.0</td>
+                                <td>1.0</td>
+                                <td>1.0</td>
+                                <td>1.0</td>
+                                <td>1.0</td>
+                                <td>1.0</td>
+                                <td>1.0</td>
+                                <td>2.0</td>
+                            </tr>
+                            <tr>
+                                <td>.NET Framework (with tooling 1.0)</td>
+                                <td>4.5</td>
+                                <td>4.5</td>
+                                <td>4.5.1</td>
+                                <td>4.6</td>
+                                <td>4.6.1</td>
+                                <td>4.6.2</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>.NET Framework (with tooling 2.0 preview)</td>
+                                <td>4.5</td>
+                                <td>4.5</td>
+                                <td>4.5.1</td>
+                                <td>4.6</td>
+                                <td>4.6.1</td>
+                                <td>4.6.1</td>
+                                <td>4.6.1</td>
+                                <td>4.6.1</td>
+                            </tr>
+                            <tr>
+                                <td>Mono</td>
+                                <td>4.6</td>
+                                <td>4.6</td>
+                                <td>4.6</td>
+                                <td>4.6</td>
+                                <td>4.6</td>
+                                <td>4.6</td>
+                                <td>4.6</td>
+                                <td>vNext</td>
+                            </tr>
+                            <tr>
+                                <td>Xamarin.iOS</td>
+                                <td>10.0</td>
+                                <td>10.0</td>
+                                <td>10.0</td>
+                                <td>10.0</td>
+                                <td>10.0</td>
+                                <td>10.0</td>
+                                <td>10.0</td>
+                                <td>vNext</td>
+                            </tr>
+                            <tr>
+                                <td>Xamarin.Android</td>
+                                <td>7.0</td>
+                                <td>7.0</td>
+                                <td>7.0</td>
+                                <td>7.0</td>
+                                <td>7.0</td>
+                                <td>7.0</td>
+                                <td>7.0</td>
+                                <td>vNext</td>
+                            </tr>
+                            <tr>
+                                <td>Universal Windows Platform</td>
+                                <td>10.0</td>
+                                <td>10.0</td>
+                                <td>10.0</td>
+                                <td>10.0</td>
+                                <td>10.0</td>
+                                <td>vNext</td>
+                                <td>vNext</td>
+                                <td>vNext</td>
+                            </tr>
+                            <tr>
+                                <td>Windows</td>
+                                <td>8.0</td>
+                                <td>8.0</td>
+                                <td>8.1</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Windows Phone</td>
+                                <td>8.1</td>
+                                <td>8.1</td>
+                                <td>8.1</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Windows Phone Silverlight</td>
+                                <td>8.0</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h2>.NET Standard</h2>
+                    <p>vs.</p>
+                    <h2>Portable Class Library</h2>
+                </section>
+                <section>
+                    <style>
+                        table.pcl {
+                            font-size: 0.5em;
+                        }
+
+                        table.pcl tr th {
+                            border-color: #e18942;
+                        }
+                    </style>
+                    <table class="pcl">
+                        <thead>
+                            <tr>
+                                <th align="center">PCL Profile</th>
+                                <th align="center">.NET Standard</th>
+                                <th>PCL Platforms</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td align="center">7</td>
+                                <td align="center">1.1</td>
+                                <td>.NET Framework 4.5, Windows 8</td>
+                            </tr>
+                            <tr>
+                                <td align="center">31</td>
+                                <td align="center">1.0</td>
+                                <td>Windows 8.1, Windows Phone Silverlight 8.1</td>
+                            </tr>
+                            <tr>
+                                <td align="center">32</td>
+                                <td align="center">1.2</td>
+                                <td>Windows 8.1, Windows Phone 8.1</td>
+                            </tr>
+                            <tr>
+                                <td align="center">44</td>
+                                <td align="center">1.2</td>
+                                <td>.NET Framework 4.5.1, Windows 8.1</td>
+                            </tr>
+                            <tr>
+                                <td align="center">49</td>
+                                <td align="center">1.0</td>
+                                <td>.NET Framework 4.5, Windows Phone Silverlight 8</td>
+                            </tr>
+                            <tr>
+                                <td align="center">78</td>
+                                <td align="center">1.0</td>
+                                <td>.NET Framework 4.5, Windows 8, Windows Phone Silverlight 8</td>
+                            </tr>
+                            <tr>
+                                <td align="center">84</td>
+                                <td align="center">1.0</td>
+                                <td>Windows Phone 8.1, Windows Phone Silverlight 8.1</td>
+                            </tr>
+                            <tr>
+                                <td align="center">111</td>
+                                <td align="center">1.1</td>
+                                <td>.NET Framework 4.5, Windows 8, Windows Phone 8.1</td>
+                            </tr>
+                            <tr>
+                                <td align="center">151</td>
+                                <td align="center">1.2</td>
+                                <td>.NET Framework 4.5.1, Windows 8.1, Windows Phone 8.1</td>
+                            </tr>
+                            <tr>
+                                <td align="center">157</td>
+                                <td align="center">1.0</td>
+                                <td>Windows 8.1, Windows Phone 8.1, Windows Phone Silverlight 8.1</td>
+                            </tr>
+                            <tr>
+                                <td align="center">259</td>
+                                <td align="center">1.0</td>
+                                <td>.NET Framework 4.5, Windows 8, Windows Phone 8.1, Windows Phone Silverlight 8</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </section>
+
+            <!-- Thanks! -->
+            <section>
+                <h1>Thanks!</h1>
+            </section>
+
+        </div>
+
+    </div>
+
+    <script src="../reveal-js/lib/js/head.min.js"></script>
+    <script src="../reveal-js/js/reveal.js"></script>
+
+    <script>
+        // More info https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+            //   slideNumber: 'c/t',
+
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+            // More info https://github.com/hakimel/reveal.js#dependencies
+            dependencies: [
+                { src: '../reveal-js/lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: '../reveal-js/plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: '../reveal-js/plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: '../reveal-js/plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: '../reveal-js/plugin/zoom-js/zoom.js', async: true },
+                { src: '../reveal-js/plugin/notes/notes.js', async: true }
+            ]
+        });
+    </script>
+
+</body>
+
+</html>
