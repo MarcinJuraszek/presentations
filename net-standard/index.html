@@ -60,16 +60,6 @@
                 </ul>
             </section>
 
-            <!-- .NET Standard -->
-            <section>
-                <h2>.NET Standard</h2>
-                <hr />
-                <p class="fragment" data-fragment-index="0">A <strong style="text-decoration: underline">specification</strong>, not a
-                    <strike>platform</strike>.</p>
-                <p class="fragment" data-fragment-index="1">You can <strong style="text-decoration: underline">write against it</strong>, never
-                    <strike>run on it</strike>.</p>
-            </section>
-
             <!-- .NET Ecosystem - images -->
             <section>
                 <section>
@@ -79,6 +69,21 @@
                 <section>
                     <h3>.NET ecosystem with .NET Standard</h3>
                     <img src="content/dotnet-tomorrow.png" />
+                </section>
+            </section>
+
+            <!-- .NET Standard -->
+            <section>
+                <section>
+                    <h2>How do I share code between these platforms?</h2>
+                </section>
+                <section>
+                    <h2>.NET Standard</h2>
+                    <hr />
+                    <p class="fragment" data-fragment-index="0">A <strong style="text-decoration: underline">specification</strong>, not a
+                        <strike>platform</strike>.</p>
+                    <p class="fragment" data-fragment-index="1">You can <strong style="text-decoration: underline">target it</strong>, never
+                        <strike>run on it</strike>.</p>
                 </section>
             </section>
 
@@ -118,6 +123,16 @@ interface INetCoreApp10 : INetStandard15
             <section>
                 <section>
                     <h2>Versioning</h2>
+                </section>
+                <section>
+                    <p>Add only, nothing gets removed.</p>
+                    <p>New version can add:
+                        <ul>
+                            <li>Assemblies</li>
+                            <li>Types</li>
+                            <li>Type Members</li>
+                        </ul>
+                    </p>
                 </section>
                 <style>
                     div.versions {
@@ -275,20 +290,10 @@ interface INetCoreApp10 : INetStandard15
                 </section>
             </section>
 
-            <!-- Is X part of .NET Standard Y.Z? -->
-            <section>
-                <section>
-                    <h2>Is <code style="text-transform: none;">Foo.Bar</code> part of<br />.NET Standard Y.Z?</h2>
-                </section>
-                <section>
-                    <h2><a href="http://apisof.net" target="_blank">apisof.net</a></h2>
-                </section>
-            </section>
-
             <!-- Which version to target? -->
             <section>
                 <section>
-                    <h2>Which version to target?</h2>
+                    <h2>Which version should I target?</h2>
                     <p class="fragment" data-fragment-index="0">The higher the version,<br>the more APIs are available to you.</p>
                     <hr class="fragment" data-fragment-index="1" />
                     <p class="fragment" data-fragment-index="1">The lower the version,<br />the more platforms you can run on.</p>
@@ -740,6 +745,23 @@ interface INetCoreApp10 : INetStandard15
                         </tbody>
                     </table>
                 </section>
+                <section>
+                    <h2>Which version should I target?</h1>
+                        <hr class="fragment" data-fragment-index="0" />
+                        <h1 class="fragment" data-fragment-index="0">Target the lowest version you can</h2>
+                </section>
+            </section>
+
+            <!-- Is X part of .NET Standard Y.Z? -->
+            <section>
+                <section>
+                    <h2>Is <code style="text-transform: none;">Foo.Bar</code> part of<br />.NET Standard Y.Z?</h2>
+                </section>
+                <section>
+                    <p><a href="https://github.com/dotnet/standard/blob/master/docs/versions.md" target="_blank">github:dotnet/standard</a></p>
+                    <hr class="fragment" data-fragment-index="0" />
+                    <p class="fragment" data-fragment-index="0"><a href="http://apisof.net" target="_blank">apisof.net</a></p>
+                </section>
             </section>
 
             <section>
@@ -747,6 +769,72 @@ interface INetCoreApp10 : INetStandard15
                     <h2>.NET Standard</h2>
                     <p>vs.</p>
                     <h2>Portable Class Library</h2>
+                </section>
+                <style>
+                    div .profile {
+                        position: absolute;
+                        display: block;
+                        font-size: 0.5em !important;
+                        text-align: center;
+                        width: 100px;
+                    }
+
+                    div .profile-circle {
+                        width: 200px;
+                        height: 200px;
+                        padding: 50px !important;
+                        border-radius: 50%;
+                        line-height: 200px;
+                    }
+
+                    div .profile-net40 {
+                        background: rgba(200, 200, 0, 0.6);
+                        left: calc(50% - 150px - 100px);
+                        top: 200px;
+                        text-align: left;
+                    }
+
+                    div .profile-silverlight50 {
+                        background: rgba(0, 200, 200, 0.6);
+                        left: calc(50% - 50px);
+                        top: 200px;
+                        text-align: right;
+                    }
+
+                    div .profile-netcore45 {
+                        background: rgba(200, 0, 200, 0.6);
+                        left: calc(50% - 150px);
+                    }
+
+                    div .profile-14 {
+                        left: calc(50% - 50px);
+                        top: 350px;
+                    }
+
+                    div .profile-5 {
+                        left: 360px;
+                        top: 230px;
+                    }
+
+                    div .profile-37 {
+                        left: calc(50% - 50px);
+                        top: 260px;
+                    }
+                </style>
+                <section>
+                    <h2>Profiles</h2>
+                    <div style="position: relative">
+                        <p data-fragment-index="0" class="fragment profile profile-circle profile-net40">.NET 4.0</p>
+                        <p data-fragment-index="3" class="fragment profile profile-circle profile-netcore45">.NET Core 4.5</p>
+                        <p data-fragment-index="1" class="fragment profile profile-circle profile-silverlight50">Silverlight 5.0</p>
+                        <p data-fragment-index="2" class="fragment profile profile-14">14</p>
+                        <p data-fragment-index="4" class="fragment profile profile-5">5</p>
+                        <p data-fragment-index="4" class="fragment profile profile-37">37</p>
+                    </div>
+                </section>
+                <section>
+                    <img src="content/venn-diagram.svg" style="width: 500px;" />
+                    <p style="font-style: italic; font-size: 0.3em;">source: https://commons.wikimedia.org/wiki/File:Symmetrical_5-set_Venn_diagram.svg</p>
                 </section>
                 <section>
                     <style>
@@ -827,7 +915,7 @@ interface INetCoreApp10 : INetStandard15
                 </section>
             </section>
 
-            <!-- Demo #2 - libraries -->
+            <!-- Demo - libraries -->
             <section>
                 <h1>Demo</h1>
                 <h2>.NET Standard libraries</h2>
@@ -838,13 +926,104 @@ interface INetCoreApp10 : INetStandard15
                     <h1>.NET Standard 2.0</h1>
                 </section>
                 <section>
+                    <h2>pre-2.0 problems</h2>
+                    <ol>
+                        <li>Number of APIs.</li>
+                        <li>Level of adoption.</li>
+                    </ol>
+                </section>
+                <section>
+                    <h2>Number of APIs</h2>
+                    <img src="content/net20.png" style="width: 600px" />
+                </section>
+                <section>
+                    <h2>Level of adoption</h2>
+                    <table class="fragment" style="font-size: 0.8em">
+                        <thead>
+                            <tr>
+                                <th align="left">Target</th>
+                                <th align="right">Occurrences</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td align="left">.NET Framework</td>
+                                <td align="right">46,894</td>
+                            </tr>
+                            <tr>
+                                <td align="left">.NET Standard</td>
+                                <td align="right">1,886</td>
+                            </tr>
+                            <tr>
+                                <td align="left">Portable</td>
+                                <td align="right">4,501</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h2>Solution</h2>
+                    <hr>
+                    <h2>Compatibility shim &amp; Type Forwarding</h2>
+                </section>
+                <section>
+                    <img src="content/deps16.png" />
+                </section>
+                <section>
+                    <img src="content/deps20.png" />
+                </section>
+                <section>
+                    <h2>.NET Core SDK 2.0 preview 2</h2>
+                    <a style="font-size: 0.6em; font-style: italic" src="https://blogs.msdn.microsoft.com/dotnet/2017/06/28/announcing-net-core-2-0-preview-2/">https://blogs.msdn.microsoft.com/dotnet/2017/06/28/announcing-net-core-2-0-preview-2/</a>
                 </section>
             </section>
 
-            <!-- Demo #3 - type forwarding -->
+            <!-- Demo - type forwarding -->
             <section>
                 <h1>Demo</h1>
-                <h2>Type forwarding</h2>
+                <h2>.NET Standard 2.0</h2>
+            </section>
+
+            <section>
+                <h2>Release schedule</h2>
+                <table style="font-size: 0.6em">
+                    <thead>
+                        <tr>
+                            <th>Milestone</th>
+                            <th>Release Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>.NET Core 2.0 Preview 1</td>
+                            <td><a href="https://github.com/dotnet/core/issues/640">Released on 2017/5/10</a>, see <a href="https://blogs.msdn.microsoft.com/dotnet/2017/05/10/announcing-net-core-2-0-preview-1/">announcement</a></td>
+                        </tr>
+                        <tr style="background-color: darkseagreen">
+                            <td>.NET Standard 2.0 Preview 1</td>
+                            <td><a href="https://github.com/dotnet/core/issues/640">Released on 2017/5/10</a>, see <a href="https://blogs.msdn.microsoft.com/dotnet/2017/05/10/announcing-net-core-2-0-preview-1/">announcement</a></td>
+                        </tr>
+                        <tr>
+                            <td>.NET Core 2.0 Preview 2</td>
+                            <td><a href="https://github.com/dotnet/core/issues/711">Released on 2017/6/28</a>, see <a href="https://blogs.msdn.microsoft.com/dotnet/2017/06/28/announcing-net-core-2-0-preview-2/">announcement</a></td>
+                        </tr>
+                        <tr>
+                            <td>.NET Core 2.0</td>
+                            <td>Q3 2017, see also <a href="https://github.com/dotnet/cli/tree/release/2.0.0#installers-and-binaries">latest build</a></td>
+                        </tr>
+                        <tr style="background-color: darkseagreen">
+                            <td>.NET Standard 2.0</td>
+                            <td>Q3 2017</td>
+                        </tr>
+                        <tr>
+                            <td>UWP 6.0 (implements .NET Standard 2.0)</td>
+                            <td>Q4 2017 (<a href="https://www.microsoft.com/en-us/windows/upcoming-features">Win10 Fall Creators Update</a>)</td>
+                        </tr>
+                        <tr>
+                            <td>.NET Core 2.1</td>
+                            <td>Q4 2017 (after UWP 6.0)</td>
+                        </tr>
+                    </tbody>
+                </table>
             </section>
 
             <!-- Thanks! -->
