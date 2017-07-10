@@ -1,7 +1,6 @@
-﻿
-namespace NetStandardLibrary
+﻿namespace NetStandardLibrary
 {
-    public static class StringProvider
+    public class StringProvider
     {
         public static string GetHelloWorldString()
         {
