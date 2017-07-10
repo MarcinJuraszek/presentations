@@ -1,4 +1,5 @@
 ﻿using System;
+using NetFrameworkLibrary;
 
 namespace HelloWorld.ConsoleApp
 {
@@ -6,15 +7,10 @@ namespace HelloWorld.ConsoleApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("What's your name?");
-            string name = Console.ReadLine();
-
+            Console.WriteLine(".NET Framework Console Application");
             Console.WriteLine();
-
-            string hello = name;
-            Console.WriteLine(hello);
-
-            Console.WriteLine();
+            Console.WriteLine(StringProvider.GetHelloWorldString());
+            Console.Read();
         }
     }
 }

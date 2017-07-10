@@ -1,10 +1,11 @@
-﻿namespace NetStandardLibrary
+﻿
+namespace NetStandardLibrary
 {
     public static class StringProvider
     {
-        public static string GetHelloWorldString(string name)
+        public static string GetHelloWorldString()
         {
-            return $"Hello {name}!";
+            return "Hello Detroit.Code() - from .NET Standard library!";
         }
     }
 }

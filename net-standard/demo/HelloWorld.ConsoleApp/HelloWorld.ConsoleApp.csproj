@@ -8,7 +8,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>HelloWorld.ConsoleApp</RootNamespace>
     <AssemblyName>HelloWorld.ConsoleApp</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -48,6 +48,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NetFrameworkLibrary\NetFrameworkLibrary.csproj">
+      <Project>{1d2f15bf-3885-40d6-94fa-dd155bf3fc71}</Project>
+      <Name>NetFrameworkLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
