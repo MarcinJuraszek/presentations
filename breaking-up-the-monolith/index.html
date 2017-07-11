@@ -29,6 +29,23 @@
             document.getElementsByTagName( 'head' )[0].appendChild( link );
         </script>
 
+        <style>
+            .reveal p.source {
+                font-size: 0.4em;
+                font-style: italic;
+            }
+
+            .reveal p.source::before {
+                content: 'from: ';
+                font-weight: bold;
+            }
+
+            .reveal blockquote {
+                width: 100%;
+                font-size: 0.8em;
+            }
+        </style>
+
         <!--[if lt IE 9]>
         <script src="lib/js/html5shiv.js"></script>
         <![endif]-->
@@ -59,6 +76,73 @@
                         <li><a href="https://github.com/MarcinJuraszek">MarcinJuraszek</a> on GitHub</li>
                     </ul>
                 </section>
+
+                <section>
+                    <section>
+                        <h2>Microservices Architecture</h2>
+                        <blockquote >An architectural style for building software solutions as a network-based system of modular services organized by business domains in order to improve the application’s evolvability, deployability, composability, scalability, resiliency and replaceability</blockquote>
+                        <p class="source">Mike Amundsen, Matt McLarty, Ronnie Mitra, Irakli Ndareishvili. Microservice Architecture: Aligning Principles, Practices, and Culture.</p>
+                    </section>
+                    <section>
+                        <h2>The dream</h2>
+                        <ol>
+                            <li class="fragment">Identify business scenario <i>aka 'a problem'</i></li>
+                            <li class="fragment">Form a team</li>
+                            <li class="fragment">Design the API</li>
+                            <li class="fragment">Choose language and framework</li>
+                            <li class="fragment">Write, test, deploy and scale</li>
+                            <li class="fragment">PROFIT!!!</li>
+                        </ol>
+                    </section>
+                    <section>
+                        <h2>The reality</h2>
+                        <h1 class="fragment">The Monolith!</h1>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Breaking up the monolith</h2>
+                        <img src="content/breaking-up-the-monolith.png" />
+                        <p class="source">https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-overview-microservices</p>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>Disclaimer</h2>
+                    <p class="fragment">I'm not oposed to microservices or breaking up the monoliths!</p>
+                </section>
+
+                <section>
+                    <h2>Disclaimer #2</h2>
+                    <p class="fragment">My background:</p>
+                    <ul>
+                        <li class="fragment">.NET</li>
+                        <li class="fragment">Azure Service Fabric</li>
+                        <li class="fragment">Microsoft ;)</li>
+                        <li class="fragment">Work in progress</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>The Cost</h2>
+                    <img src="content/cost-of-features.png" style="height: 400px" />
+                    <p class="source">'Modules or microservices?' by Sander Mak at The O’Reilly Software Architecture Conference, NY 2017</p>
+                </section>
+
+                <section>
+                    <section>
+                        <h1>The approach</h1>
+                        <hr class="fragment" data-fragment-index="0" />
+                        <p class="fragment" data-fragment-index="0">Evolution, not revolution</p>
+                    </section>
+                    <section>
+                        <h2>Infrastructure</h2>
+                        <img src="content/infrastructure.png" />
+                    </section>
+                </section>
+
+
 
                 <section>
                     <h1>Thanks!</h1>
