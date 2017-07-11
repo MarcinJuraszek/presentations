@@ -131,6 +131,80 @@
                 </section>
 
                 <section>
+                    <h1>Where is that cost?</h1>
+                </section>
+
+                <section>
+                    <h2>Cross-service communication</h2>
+                    <hr />
+                    <pre class="fragment"><code class="cs">var result = Method(arg1, arg2);</code></pre>
+
+                    <p><span class="fragment">Performance</span><span class="fragment">, reliability</span><span class="fragment">
+                        , security</span><span class="fragment">, debugging</span><span class="fragment">,<br />service discovery</span></p>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Telemetry</h2>
+                        <hr />
+                        <p>
+                            <span class="fragment">Request tracing</span><span class="fragment">, service dependencies</span><span class="fragment">,<br />
+                            service health and performance</span><span class="fragment">, network traffic</span></p>
+                    </section>
+                    <section>
+                        <h4>Request tracing</h4>
+                        <img src="content/trace-after.png" />
+                        <p class="source">https://sudo.hailoapp.com/services/2015/03/09/journey-into-a-microservice-world-part-3/</p>
+                    </section>
+                    <section>
+                        <h4>Service dependencies</h4>
+                        <img src="content/wheel-of-doom-highlighted.png" style="height: 500px" />
+                        <p class="source">https://sudo.hailoapp.com/services/2015/03/09/journey-into-a-microservice-world-part-3/</p>
+                    </section>
+                    <section>
+                        <h4>Network traffic</h4>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/MYHf_BXWuOc" frameborder="0" allowfullscreen></iframe>
+                        <p class="source">https://github.com/Netflix/vizceral</p>
+                    </section>
+                    <section>
+                        <h4>Network traffic</h4>
+                        <img src="content/vizceral-example.png" style="height: 500px;" />
+                        <p class="source">https://github.com/Netflix/vizceral</p>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Deployments and Versioning</h2>
+                        <hr />
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Live-site operations</h2>
+                        <hr />
+                        <p class="fragment">Who do you call when something goes wrong at 3AM?</p>
+                    </section>
+                    <section>
+                        <h3>Options</h3>
+                        <ol>
+                            <li class="fragment">Call the owner of the first failing microservice</li>
+                            <li class="fragment">Call the owner of all the failing microservices</li>
+                            <li class="fragment">Pinpoint the broken microservice(s), call the right owner(s)</li>
+                        </ol>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>Technical Sprawl</h2>
+                    <hr />
+                    <blockquote class="fragment" data-fragment-index="0">The only way to cut down on technical sprawl is through standardization at every level of the microservice ecosystem.</blockquote>
+                    <p data-fragment-index="0" class="source fragment">Fowler, Susan J. Production-ready Microservices: Building Standardized Systems Across an Egineering Organization.</p>
+                </section>
+
+                    <!--
+                <section>
                     <section>
                         <h1>The approach</h1>
                         <hr class="fragment" data-fragment-index="0" />
@@ -142,7 +216,7 @@
                     </section>
                 </section>
 
-
+-->
 
                 <section>
                     <h1>Thanks!</h1>
