@@ -106,22 +106,35 @@
                         <img src="content/breaking-up-the-monolith.png" />
                         <p class="source">https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-overview-microservices</p>
                     </section>
-                </section>
-
                 <section>
-                    <h2>Disclaimer</h2>
-                    <p class="fragment">I'm not oposed to microservices or breaking up the monoliths!</p>
-                </section>
-
-                <section>
-                    <h2>Disclaimer #2</h2>
-                    <p class="fragment">My background:</p>
+                    <h2>Why?</h2>
                     <ul>
-                        <li class="fragment">.NET</li>
-                        <li class="fragment">Azure Service Fabric</li>
-                        <li class="fragment">Microsoft ;)</li>
-                        <li class="fragment">Work in progress</li>
+                        <li>Architectural design</li>
+                        <li>Code coupling</li>
+                        <li>Engineering velocity</li>
+                        <li>Deployments</li>
+                        <li>Testing</li>
+                        <li>Live-site</li>
+                        <li>Scaling</li>
+                        <li>Team satisfaction</li>
                     </ul>
+                </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Disclaimer</h2>
+                        <p>I'm not oposed to microservices<br />or breaking up monoliths!</p>
+                    </section>
+                    <section>
+                        <h2>Disclaimer #2</h2>
+                        <p>My background:</p>
+                        <ul>
+                            <li>.NET</li>
+                            <li>Azure Service Fabric</li>
+                            <li>Microsoft ;)</li>
+                        </ul>
+                    </section>
                 </section>
 
                 <section>
@@ -135,15 +148,67 @@
                 </section>
 
                 <section>
-                    <h2>Cross-service communication</h2>
-                    <hr />
-                    <pre class="fragment"><code class="cs">var result = Method(arg1, arg2);</code></pre>
+                    <section>
+                        <h2>Architectural design &amp; Code Coupling</h2>
+                    </section>
 
-                    <p><span class="fragment">Performance</span><span class="fragment">, reliability</span><span class="fragment">
-                        , security</span><span class="fragment">, debugging</span><span class="fragment">,<br />service discovery</span></p>
+                    <section>
+                        <h2>Technical Sprawl</h2>
+                        <hr />
+                        <p class="fragment" data-fragment-index="0">languages, frameworks, communication protocols, tools, dashboards</p>
+                        <hr class="fragment" data-fragment-index="0" />
+                        <blockquote class="fragment" data-fragment-index="1">The only way to cut down on technical sprawl is through standardization at every level of the microservice ecosystem.</blockquote>
+                        <p data-fragment-index="1" class="source fragment">Fowler, Susan J. Production-ready Microservices: Building Standardized Systems Across an Egineering Organization.</p>
+                    </section>
+
+                    <section>
+                        <h2>Cross-service communication</h2>
+                        <hr />
+                        <pre class="fragment"><code class="cs">var result = Method(arg1, arg2);</code></pre>
+
+                        <p><span class="fragment">Performance</span><span class="fragment">, reliability</span><span class="fragment">
+                            , security</span><span class="fragment">, debugging</span><span class="fragment">,<br />service discovery</span><span class="fragment">
+                            , telemetry</span></p>
+                    </section>
                 </section>
 
                 <section>
+                    <section>
+                        <h2>Engineering velocity</h2>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Testing</h2>
+                        <hr />
+                        <p><span class="fragment">test granurality</span><span class="fragment">, API changes</span></p>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Deployments</h2>
+                        <hr />
+                        <p><span class="fragment">Continuous Deployments</span><span class="fragment">, parallel deployments</span><span class="fragment">, homogeneous environments</span><span class="fragment">,<br />standing up new environments</span></p>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Live-site</h2>
+                    </section>
+                    <section>
+                        <p>Who do you call when something goes wrong at 3AM?</p>
+                    </section>
+                    <section>
+                        <h3>Options</h3>
+                        <ol>
+                            <li class="fragment">Call the owner of the first failing microservice</li>
+                            <li class="fragment">Call the owner of all the failing microservices</li>
+                            <li class="fragment">Pinpoint the broken microservice(s), call the right owner(s)</li>
+                        </ol>
+                    </section>
                     <section>
                         <h2>Telemetry</h2>
                         <hr />
@@ -174,49 +239,44 @@
                 </section>
 
                 <section>
-                    <section>
-                        <h2>Deployments and Versioning</h2>
-                        <hr />
-                    </section>
+                    <h2>Scaling</h2>
                 </section>
 
                 <section>
-                    <section>
-                        <h2>Live-site operations</h2>
-                        <hr />
-                        <p class="fragment">Who do you call when something goes wrong at 3AM?</p>
-                    </section>
-                    <section>
-                        <h3>Options</h3>
-                        <ol>
-                            <li class="fragment">Call the owner of the first failing microservice</li>
-                            <li class="fragment">Call the owner of all the failing microservices</li>
-                            <li class="fragment">Pinpoint the broken microservice(s), call the right owner(s)</li>
-                        </ol>
-                    </section>
-                </section>
-
-                <section>
-                    <h2>Technical Sprawl</h2>
+                    <h2>Team satisfaction</h2>
                     <hr />
-                    <blockquote class="fragment" data-fragment-index="0">The only way to cut down on technical sprawl is through standardization at every level of the microservice ecosystem.</blockquote>
-                    <p data-fragment-index="0" class="source fragment">Fowler, Susan J. Production-ready Microservices: Building Standardized Systems Across an Egineering Organization.</p>
+                    <h2 class="fragment">Culture change</h2>
                 </section>
 
-                    <!--
                 <section>
                     <section>
-                        <h1>The approach</h1>
+                        <h1>Suggestions</h1>
                         <hr class="fragment" data-fragment-index="0" />
-                        <p class="fragment" data-fragment-index="0">Evolution, not revolution</p>
+                        <p class="fragment" data-fragment-index="0">Long-term investment</p>
+                        <p class="fragment" data-fragment-index="1">Evolution, not revolution</p>
                     </section>
                     <section>
-                        <h2>Infrastructure</h2>
-                        <img src="content/infrastructure.png" />
+                        <h2>Processes</h2>
+                        <p>Ship the monolith faster first!</p>
+                        <ul>
+                            <li class="fragment">CI/CD</li>
+                            <li class="fragment">Automated testing</li>
+                            <li class="fragment">Telemetry</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p>Start with something that's not critical</p>
+                        <hr />
+                        <p>Move to more critical things later</p>
+                    </section>
+                    <section>
+                        <p>Move/Split for the sake of splitting does very little sense</p>
+                    </section>
+                    <section>
+                        <p>It has to be so much better, that people will want to move organically</p>
                     </section>
                 </section>
 
--->
 
                 <section>
                     <h1>Thanks!</h1>
