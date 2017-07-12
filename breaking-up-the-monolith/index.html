@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Breaking up the Monolith - Marcin Juraszek</title>
+
+        <meta name="description" content="Breaking up the Monolith presentation by Marcin Juraszek">
+        <meta name="author" content="Marcin Juraszek">
+
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <link rel="stylesheet" href="../reveal-js/css/reveal.css">
+        <link rel="stylesheet" href="../reveal-js/css/theme/black.css" id="theme">
+
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="../reveal-js/lib/css/zenburn.css">
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? '../reveal-js/css/print/pdf.css' : '../reveal-js/css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+
+        <style>
+            .reveal p.source {
+                font-size: 0.4em;
+                font-style: italic;
+            }
+
+            .reveal blockquote {
+                width: 100%;
+                font-size: 0.8em;
+            }
+        </style>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section>
+                    <h1>Breaking up the Monolith</h1>
+                    <h2>It's not all unicorns and rainbows</h2>
+                    <p>
+                        <small>by <a href="http://marcinjuraszek.com">Marcin Juraszek</a></small>
+                    </p>
+                    <p class="source">Slides: http://marcinjuraszek.com/presentations/breaking-up-the-monolith</p>
+                </section>
+
+                <section style="text-align: left">
+                    <img src="../shared-content/twitter-picture.jpg"
+                         style="float: right; width: 200px; height: 200px; border-radius: 50%;" />
+                    <h2>Marcin Juraszek</h2>
+                    <p>Senior Software Engineer @ Microsoft</p>
+                    <ul>
+                        <li><a href="http://marcinjuraszek.com">http://marcinjuraszek.com</a></li>
+                        <li><a href="https://twitter.com/mmjuraszek">@mmjuraszek</a> on Twitter</li>
+                        <li><a href="https://github.com/MarcinJuraszek">MarcinJuraszek</a> on GitHub</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Microservices Architecture</h2>
+                        <blockquote >An architectural style for building software solutions as a network-based system of modular services organized by business domains in order to improve the application’s evolvability, deployability, composability, scalability, resiliency and replaceability</blockquote>
+                        <p class="source">Mike Amundsen, Matt McLarty, Ronnie Mitra, Irakli Ndareishvili. Microservice Architecture: Aligning Principles, Practices, and Culture.</p>
+                    </section>
+                    <section>
+                        <h2>The dream</h2>
+                        <ol>
+                            <li class="fragment">Identify business scenario <i>aka 'a problem'</i></li>
+                            <li class="fragment">Form a team</li>
+                            <li class="fragment">Design the API</li>
+                            <li class="fragment">Choose language and framework</li>
+                            <li class="fragment">Write, test, deploy and scale</li>
+                            <li class="fragment">PROFIT!!!</li>
+                        </ol>
+                    </section>
+                    <section>
+                        <h2>The reality</h2>
+                        <h1 class="fragment">The Monolith!</h1>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Breaking up the monolith</h2>
+                        <img src="content/breaking-up-the-monolith.png" />
+                        <p class="source">https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-overview-microservices</p>
+                    </section>
+                <section>
+                    <h2>Why?</h2>
+                    <ul>
+                        <li>Architectural design</li>
+                        <li>Code coupling</li>
+                        <li>Engineering velocity</li>
+                        <li>Deployments</li>
+                        <li>Testing</li>
+                        <li>Live-site</li>
+                        <li>Scaling</li>
+                        <li>Team satisfaction</li>
+                    </ul>
+                </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Disclaimer</h2>
+                        <p>I'm not oposed to microservices<br />or breaking up monoliths!</p>
+                    </section>
+                    <section>
+                        <h2>Disclaimer #2</h2>
+                        <p>My background:</p>
+                        <ul>
+                            <li>.NET</li>
+                            <li>Azure Service Fabric</li>
+                            <li>Microsoft ;)</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>The Cost</h2>
+                    <img src="content/cost-of-features.png" style="height: 400px" />
+                    <p class="source">'Modules or microservices?' by Sander Mak at The O’Reilly Software Architecture Conference, NY 2017</p>
+                </section>
+
+                <section>
+                    <h1>Where is that cost?</h1>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Architectural design &amp; Code Coupling</h2>
+                    </section>
+
+                    <section>
+                        <h2>Technical Sprawl</h2>
+                        <hr />
+                        <p class="fragment" data-fragment-index="0">languages, frameworks, communication protocols, tools, dashboards</p>
+                        <hr class="fragment" data-fragment-index="0" />
+                        <blockquote class="fragment" data-fragment-index="1">The only way to cut down on technical sprawl is through standardization at every level of the microservice ecosystem.</blockquote>
+                        <p data-fragment-index="1" class="source fragment">Fowler, Susan J. Production-ready Microservices: Building Standardized Systems Across an Egineering Organization.</p>
+                    </section>
+
+                    <section>
+                        <h2>Cross-service communication</h2>
+                        <hr />
+                        <pre class="fragment"><code class="cs">var result = Method(arg1, arg2);</code></pre>
+
+                        <p class="fragment">Performance, reliability, security, debugging,<br />service discovery, telemetry</p>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Engineering velocity</h2>
+                        <hr />
+                        <p class="fragment">code discoverability, cross-service changes</p>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Testing</h2>
+                        <hr />
+                        <p class="fragment">test granurality, API changes,<br/> dev-box testing</p>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Deployments</h2>
+                        <hr />
+                        <p class="fragment">Continuous deployments, parallel deployments, homogeneous environments,<br />standing up new environments</p>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Live-site</h2>
+                    </section>
+                    <section>
+                        <p>Who do you call when something goes wrong at 3AM?</p>
+                    </section>
+                    <section>
+                        <h3>Options</h3>
+                        <ol>
+                            <li class="fragment">Call the owner of the first failing microservice</li>
+                            <li class="fragment">Call the owner of all the failing microservices</li>
+                            <li class="fragment">Pinpoint the broken microservice(s), call the right owner(s)</li>
+                        </ol>
+                    </section>
+                    <section>
+                        <h2>Telemetry</h2>
+                        <hr />
+                        <p class="fragment">Request tracing, service dependencies,<br />
+                            service health and performance, network traffic</p>
+                    </section>
+                    <section>
+                        <h4>Request tracing</h4>
+                        <img src="content/trace-after.png" />
+                        <p class="source">https://sudo.hailoapp.com/services/2015/03/09/journey-into-a-microservice-world-part-3/</p>
+                    </section>
+                    <section>
+                        <h4>Service dependencies</h4>
+                        <img src="content/wheel-of-doom-highlighted.png" style="height: 500px" />
+                        <p class="source">https://sudo.hailoapp.com/services/2015/03/09/journey-into-a-microservice-world-part-3/</p>
+                    </section>
+                    <section>
+                        <h4>Network traffic</h4>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/MYHf_BXWuOc" frameborder="0" allowfullscreen></iframe>
+                        <p class="source">https://github.com/Netflix/vizceral</p>
+                    </section>
+                    <section>
+                        <h4>Network traffic</h4>
+                        <img src="content/vizceral-example.png" style="height: 500px;" />
+                        <p class="source">https://github.com/Netflix/vizceral</p>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>Scaling</h2>
+                </section>
+
+                <section>
+                    <h2>Team satisfaction</h2>
+                    <hr />
+                    <h2 class="fragment">Culture change</h2>
+                </section>
+
+                <section>
+                    <section>
+                        <h1>Suggestions</h1>
+                        <hr class="fragment" data-fragment-index="0" />
+                        <p class="fragment" data-fragment-index="0">Long-term investment</p>
+                        <p class="fragment" data-fragment-index="1">Evolution, not revolution</p>
+                    </section>
+                    <section>
+                        <h2>Processes</h2>
+                        <p>Ship the monolith faster first!</p>
+                        <ul>
+                            <li class="fragment">CI/CD</li>
+                            <li class="fragment">Automated testing</li>
+                            <li class="fragment">Telemetry</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p>Start with something that's not critical</p>
+                        <hr />
+                        <p>Move to more critical things later</p>
+                    </section>
+                    <section>
+                        <p>Move/Split for the sake of splitting does very little sense</p>
+                    </section>
+                    <section>
+                        <p>It has to be so much better, that people will want to move organically</p>
+                    </section>
+                </section>
+
+                <section>
+                    <h1>Thanks!</h1>
+                    <p class="source">Slides: http://marcinjuraszek.com/presentations/breaking-up-the-monolith</p>
+                </section>
+
+            </div>
+
+        </div>
+
+        <script src="../reveal-js/lib/js/head.min.js"></script>
+        <script src="../reveal-js/js/reveal.js"></script>
+
+        <script>
+
+            // More info https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+                // More info https://github.com/hakimel/reveal.js#dependencies
+                dependencies: [
+                    { src: '../reveal-js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: '../reveal-js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: '../reveal-js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: '../reveal-js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: '../reveal-js/plugin/zoom-js/zoom.js', async: true },
+                    { src: '../reveal-js/plugin/notes/notes.js', async: true }
+                ]
+            });
+
+        </script>
+
+    </body>
+</html>
